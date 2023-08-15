@@ -1,0 +1,26 @@
+# App
+# ==================================================================
+
+app:
+  # Name der Anwendung. Kommt per Filtering aus der POM.
+  name: ${project.name}
+  # Version der Anwendung. Kommt per Filtering aus der POM.
+  version: ${project.version}
+
+# Spring
+# ==================================================================
+
+spring:
+  main.banner-mode: "off"
+
+# SwaggerUI
+# ==================================================================
+
+springdoc:
+  show-actuator: true
+  api-docs:
+    version: "openapi_3_0" # 3.1 is currently not supportet by SwaggerUI
+    path: "/openapi"
+  swagger-ui:
+    path: "swagger-ui"
+    validatorUrl: "none" # Disable online validation of specs against swagger.io’s online validator.

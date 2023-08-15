@@ -1,0 +1,14 @@
+# App
+# ==================================================================
+
+app:
+  # Name der Anwendung. Kommt per Filtering aus der POM.
+  name: ${project.name}
+  # Version der Anwendung. Kommt per Filtering aus der POM.
+  version: ${project.version}
+
+# Spring
+# ==================================================================
+
+spring:
+  main.banner-mode: "off"

@@ -1,0 +1,60 @@
+# Server
+# ==================================================================
+
+server.port: 8000
+
+# Management
+# ==================================================================
+
+management:
+  server.port: 8001
+
+  endpoint.health.show-details: "always"
+  endpoints.web.exposure.include: "*"
+
+# Logging
+# ==================================================================
+
+logging.level:
+  root: "warn"
+  de.saschaufer: "info"
+
+# Database
+# ==================================================================
+
+database:
+  host: "server.lan"
+  port: 5432
+  database: "message-broker"
+  schema: "message-broker"
+  table: "messages"
+  username: "postgres"
+  password: # changeit
+
+# RabbitMq
+# ==================================================================
+
+rabbitmq:
+  host: "rabbitmq.server.lan"
+  port: 5672
+  management-port: 15672
+  user: "develop"
+  password: # changeit
+  vhost: "develop"
+  exchange: "message-broker"
+  queue: "user"
+  routingKey: "message-broker.user"
+
+# Plugins
+# ==================================================================
+
+plugin-dir-tasks: "/home/sascha/projects/intellj-workspace/message-broker/.assets/plugins/tasks/"
+plugin-dir-procedures: "/home/sascha/projects/intellj-workspace/message-broker/.assets/plugins/procedures/"
+
+plugins:
+  tasks:
+    - jar: "${plugin-dir-tasks}example-1.0.0-SNAPSHOT.jar"
+      config: "${plugin-dir-tasks}example.yml"
+  procedures:
+    - jar: "${plugin-dir-procedures}example-1.0.0-SNAPSHOT.jar"
+      config: null
