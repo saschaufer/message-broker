@@ -48,8 +48,8 @@ rabbitmq:
 # Plugins
 # ==================================================================
 
-plugin-dir-tasks: "/home/sascha/projects/intellj-workspace/message-broker/.assets/plugins/tasks/"
-plugin-dir-procedures: "/home/sascha/projects/intellj-workspace/message-broker/.assets/plugins/procedures/"
+plugin-dir-tasks: ".assets/plugins/tasks/"
+plugin-dir-procedures: ".assets/plugins/procedures/"
 
 plugins:
   tasks:
