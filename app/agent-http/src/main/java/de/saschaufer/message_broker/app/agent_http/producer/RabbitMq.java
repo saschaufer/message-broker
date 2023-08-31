@@ -76,17 +76,27 @@ public class RabbitMq {
                         .routingKey(applicationProperties.rabbitMq().routingKey())
                 )
                 .thenMany(rabbitMqSender.sendWithPublishConfirms(Flux.just(message)
-                        .doOnNext(m -> log.atDebug().setMessage("Send message to RabbitMq.").addKeyValue(Constants.Logging.PAYLOAD, m).log())
+                        .doOnNext(m -> log.atDebug().setMessage("Send message to RabbitMq.")
+                                .addKeyValue(Constants.Logging.CORRELATION_ID, message.correlationId())
+                                .addKeyValue(Constants.Logging.PAYLOAD, m)
+                                .log()
+                        )
                         .map(m -> rabbitMqProcessor.createOutboundMessage(m))
                 ))
                 .flatMap(result -> {
 
                     if (!result.isAck()) {
-                        log.atInfo().setMessage("Failed to sent message to RabbitMq.").addKeyValue(Constants.Logging.PAYLOAD, json(result.getOutboundMessage())::get).log();
+                        log.atInfo().setMessage("Failed to sent message to RabbitMq.")
+                                .addKeyValue(Constants.Logging.CORRELATION_ID, message.correlationId())
+                                .addKeyValue(Constants.Logging.PAYLOAD, json(result.getOutboundMessage())::get)
+                                .log();
                         return Mono.error(new Exception("Message not acknowledged by RabbitMq."));
                     }
 
-                    log.atInfo().setMessage("Message successfully sent to RabbitMq.").addKeyValue(Constants.Logging.PAYLOAD, json(result.getOutboundMessage())::get).log();
+                    log.atInfo().setMessage("Message successfully sent to RabbitMq.")
+                            .addKeyValue(Constants.Logging.CORRELATION_ID, message.correlationId())
+                            .addKeyValue(Constants.Logging.PAYLOAD, json(result.getOutboundMessage())::get)
+                            .log();
 
                     final byte[] body = result.getOutboundMessage().getBody();
 
