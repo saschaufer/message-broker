@@ -12,7 +12,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -30,9 +29,7 @@ public class LoggingFilterRequestInterceptor extends ServerHttpRequestDecorator 
     public Flux<DataBuffer> getBody() {
 
         return super.getBody().doOnNext(dataBuffer -> {
-
-            final String correlationId = getDelegate().getHeaders().getOrDefault(Constants.Http.Header.CORRELATION_ID, List.of("")).get(0);
-
+            
             String body = "Could not read body";
             Throwable throwable = null;
 
@@ -45,7 +42,7 @@ public class LoggingFilterRequestInterceptor extends ServerHttpRequestDecorator 
 
             LoggingEventBuilder logBuilder = log.atInfo()
                     .setMessage("Request received.")
-                    .addKeyValue(Constants.Logging.CORRELATION_ID, correlationId)
+                    .addKeyValue(Constants.Logging.CORRELATION_ID, getDelegate().getHeaders().getFirst(Constants.Http.Header.CORRELATION_ID))
                     .addKeyValue(Constants.Logging.METHOD, getDelegate().getMethod().name())
                     .addKeyValue(Constants.Logging.ENDPOINT, getDelegate().getPath().value())
                     .addKeyValue(Constants.Logging.HEADER, json(getDelegate().getHeaders().entrySet().stream().map(entry -> {

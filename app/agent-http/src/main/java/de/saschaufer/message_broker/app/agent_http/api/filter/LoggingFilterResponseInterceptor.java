@@ -14,7 +14,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -22,13 +21,9 @@ import static de.saschaufer.message_broker.utilities.JsonSupplier.json;
 
 @Slf4j
 public class LoggingFilterResponseInterceptor extends ServerHttpResponseDecorator {
-    private final String endpoint;
-    private final long startTime;
 
-    public LoggingFilterResponseInterceptor(final ServerHttpResponse delegate, final String endpoint, final long startTime) {
+    public LoggingFilterResponseInterceptor(final ServerHttpResponse delegate) {
         super(delegate);
-        this.endpoint = endpoint;
-        this.startTime = startTime;
     }
 
     @Override
@@ -36,8 +31,6 @@ public class LoggingFilterResponseInterceptor extends ServerHttpResponseDecorato
 
         final Flux<DataBuffer> buffer = Flux.from(bodyBuffer);
         return super.writeWith(buffer.doOnNext(dataBuffer -> {
-
-            final String correlationId = getDelegate().getHeaders().getOrDefault(Constants.Http.Header.CORRELATION_ID, List.of("")).get(0);
 
             String body = "Could not read body";
             Throwable throwable = null;
@@ -49,25 +42,9 @@ public class LoggingFilterResponseInterceptor extends ServerHttpResponseDecorato
                 throwable = e;
             }
 
-            // For all endpoints, but could be restricted here.
-            if (endpoint.startsWith("/")) {
-
-                final String duration = String.format("total;dur=%d;desc=\"Total duration of request\"", (System.currentTimeMillis() - startTime));
-
-                String timing = getDelegate().getHeaders().getFirst(Constants.Http.Header.SERVER_TIMING);
-
-                if (timing == null) {
-                    timing = duration;
-                } else {
-                    timing = String.format("%s, %s", duration, timing);
-                }
-
-                getDelegate().getHeaders().add(Constants.Http.Header.SERVER_TIMING, timing);
-            }
-
             LoggingEventBuilder logBuilder = log.atInfo()
                     .setMessage("Response sent.")
-                    .addKeyValue(Constants.Logging.CORRELATION_ID, correlationId)
+                    .addKeyValue(Constants.Logging.CORRELATION_ID, getDelegate().getHeaders().getFirst(Constants.Http.Header.CORRELATION_ID))
                     .addKeyValue(Constants.Logging.HEADER, json(getDelegate().getHeaders().entrySet().stream().map(entry -> {
 
                         if (entry.getValue() == null) {
