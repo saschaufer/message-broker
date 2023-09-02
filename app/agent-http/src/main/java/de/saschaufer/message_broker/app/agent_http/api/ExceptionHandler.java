@@ -21,7 +21,6 @@ import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 import reactor.core.publisher.Mono;
 
 import javax.naming.ServiceUnavailableException;
-import java.util.List;
 
 @Slf4j
 @RestControllerAdvice
@@ -234,6 +233,6 @@ public class ExceptionHandler {
     }
 
     private String correlationId(final ServerHttpRequest request) {
-        return request.getHeaders().getOrDefault(Constants.Logging.CORRELATION_ID, List.of("")).get(0);
+        return request.getHeaders().getFirst(Constants.Http.Header.CORRELATION_ID);
     }
 }
