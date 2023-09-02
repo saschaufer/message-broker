@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -28,12 +29,14 @@ public class User {
     private SEX sex;
 
     public Map<String, Object> toMap() {
-        return Map.of(
-                "firstName", getFirstName(),
-                "lastName", getLastName(),
-                "title", getTitle(),
-                "degree", getDegree(),
-                "sex", getSex().name()
-        );
+
+        final Map<String, Object> map = new HashMap<>();
+        map.put("firstName", getFirstName());
+        map.put("lastName", getLastName());
+        map.put("title", getTitle());
+        map.put("degree", getDegree());
+        map.put("sex", getSex().name());
+
+        return map;
     }
 }
