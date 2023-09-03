@@ -3,6 +3,7 @@ package de.saschaufer.message_broker.plugin.spi;
 public abstract class Constants {
     public static abstract class Logging {
         public static final String CORRELATION_ID = "correlation-id";
+        public static final String DETAILS = "details";
         public static final String ENDPOINT = "endpoint";
         public static final String HEADER = "header";
         public static final String METHOD = "method";
