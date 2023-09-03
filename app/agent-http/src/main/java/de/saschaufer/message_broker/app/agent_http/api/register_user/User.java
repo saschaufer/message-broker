@@ -13,10 +13,12 @@ import java.util.Map;
 @NoArgsConstructor
 public class User {
     enum SEX {male, female, unknown}
-
+    
+    @NotNull
     @NotBlank
     @Schema(example = "John")
     private String firstName;
+    @NotNull
     @NotBlank
     @Schema(example = "Doe")
     private String lastName;
