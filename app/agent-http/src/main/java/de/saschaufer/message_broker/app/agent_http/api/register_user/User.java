@@ -1,10 +1,10 @@
 package de.saschaufer.message_broker.app.agent_http.api.register_user;
 
+import de.saschaufer.message_broker.app.agent_http.config.validator.NotBlank;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,17 +13,17 @@ import java.util.Map;
 @NoArgsConstructor
 public class User {
     enum SEX {male, female, unknown}
-    
-    @NotNull
+
     @NotBlank
     @Schema(example = "John")
     private String firstName;
-    @NotNull
     @NotBlank
     @Schema(example = "Doe")
     private String lastName;
+    @NotBlank(nullable = true)
     @Schema(example = "Sir")
     private String title;
+    @NotBlank(nullable = true)
     @Schema(example = "BSc")
     private String degree;
     @NotNull
