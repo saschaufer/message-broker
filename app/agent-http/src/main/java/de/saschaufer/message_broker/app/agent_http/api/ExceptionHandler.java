@@ -21,6 +21,7 @@ import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 import reactor.core.publisher.Mono;
 
 import javax.naming.ServiceUnavailableException;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
@@ -187,13 +188,22 @@ public class ExceptionHandler {
 
         final String correlationId = correlationId(r);
 
+        final String errors = e.getFieldErrors().stream()
+                .map(fieldError -> new StringBuilder().append("(")
+                        .append("object: ").append(fieldError.getObjectName())
+                        .append(", field: ").append(fieldError.getField())
+                        .append(", error: ").append(fieldError.getDefaultMessage())
+                        .append(")").toString()
+                ).collect(Collectors.joining(", "));
+
         log.atError().setMessage(String.format(logMessage, "The request has not fulfilled the API contract."))
                 .addKeyValue(Constants.Logging.CORRELATION_ID, correlationId)
                 .addKeyValue(Constants.Logging.ENDPOINT, r.getPath())
+                .addKeyValue(Constants.Logging.DETAILS, errors)
                 .setCause(e)
                 .log();
 
-        return status(HttpStatus.BAD_REQUEST, correlationId, "The request has not fulfilled the API contract.");
+        return status(HttpStatus.BAD_REQUEST, correlationId, String.format("The request has not fulfilled the API contract.\nCaused by: %s", errors));
     }
 
     @ApiResponse(responseCode = "503", description = "The service is temporarily not available. Try again later.",
