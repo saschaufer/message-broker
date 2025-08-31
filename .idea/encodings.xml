@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/agent-http/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/agent-http/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/file-storage/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/file-storage/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/management-ui-frontend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/management-ui-frontend/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/management-ui/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/management-ui/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/message-broker-app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/message-broker-app/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bom/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bom/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin-spi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin-spi/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin/procedure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin/procedure/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin/task/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin/task/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shared/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shared/common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shared/plugin-spi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shared/plugin-spi/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shared/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shared/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
