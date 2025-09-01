@@ -1,0 +1,34 @@
+# App
+# ==================================================================
+
+app:
+  name: ${project.parent.artifactId}
+  version: ${project.version}
+
+# Spring
+# ==================================================================
+
+spring:
+  main.banner-mode: off
+  profiles.active: default
+
+# Server
+# ==================================================================
+
+server.port: 8080
+
+#  Logging
+# ==================================================================
+
+logging:
+  structured.format.console: logstash
+  level:
+    root: warn
+    de.saschaufer: info
+
+# Swagger UI
+# ==================================================================
+
+springdoc:
+  swagger-ui:
+    enabled: true
