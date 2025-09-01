@@ -1,0 +1,44 @@
+# App
+# ==================================================================
+
+app:
+  name: ${project.parent.artifactId}
+  version: ${project.version}
+
+# Spring
+# ==================================================================
+
+spring:
+  main.banner-mode: off
+  profiles.active: default
+  servlet.multipart:
+    max-file-size: 10MB
+    max-request-size: 10MB
+    file-size-threshold: 1MB
+
+# Server
+# ==================================================================
+
+server.port: 8080
+
+#  Logging
+# ==================================================================
+
+logging:
+  structured.format.console: logstash
+  level:
+    root: warn
+    de.saschaufer: info
+
+# Swagger UI
+# ==================================================================
+
+springdoc:
+  swagger-ui:
+    enabled: true
+
+# File Storage
+# ==================================================================
+
+file-storage:
+  path: "/var/lib/file-storage"

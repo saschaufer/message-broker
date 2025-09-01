@@ -17,4 +17,13 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A library providing common functionalities.</description>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+
+    </dependencies>
+
 </project>

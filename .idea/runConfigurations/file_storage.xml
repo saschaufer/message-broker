@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="file-storage" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="file-storage" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="de.saschaufer.message_broker.app.file_storage.Application" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
